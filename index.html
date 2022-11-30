@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery New Account Creation Form</title>
+
+</head>
+
+<body>
+    <h1>jQuery New Account Creation Form</h1>
+    <form id="new-account-form">
+        <p><input type="email" size="30" name="email" value="" placeholder="Enter your email address"></p>
+        <p><input type="password" size="30" name="password1" value="" placeholder="Enter a password"></p>
+        <p><input type="password" size="30" name="password2" value="" placeholder="Reenter the password"></p>
+        <button type="submit">Create Account</button>
+    </form>
+    <p>Form Output: <span id="output"></span></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        let emailInput = $("input[name='email']");
+        let password1Input = $("input[name='password1']");
+        let password2Input = $("input[name='password2']");
+        let ouptut = $("#output");
+        function clearResults()
+        {
+            $(output).html("");
+        }
+        $("input").focus(clearResults);
+        $("#new-account-form").submit(function (e) {
+            e.preventDefault();
+            if(!isValidEmail())
+            {
+                $("#output").append("<p><font color = 'red'>Missing or Invalid Email</font></p>");
+            }
+            if(!isValidPassword())
+            {
+                $("#output").append("<p><font color = 'red'>Missing or Invalid Passwords</font></p>");
+            }
+        })
+        function isValidEmail() {
+            em = $.trim(emailInput.val());
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (emailPattern.test(em)) {
+                return true;
+            }
+            else {
+                // Add your code here to handle the error. 
+                return false;
+            }
+        }
+        function isValidPassword() {
+            let pw1 = $.trim(password1Input.val());
+            let pw2 = $.trim(password2Input.val());
+            if(pw1 === pw2 && pw1.length > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+    </script>
+</body>
+
+</html>
