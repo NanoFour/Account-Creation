@@ -15,7 +15,8 @@
         <p><input type="password" size="30" name="password2" value="" placeholder="Reenter the password"></p>
         <button type="submit">Create Account</button>
     </form>
-    <p>Form Output: <span id="output"></span></p>
+    <span id='output' style="font-weight: bold"></span>
+   <!-- <p>Form Output: <span id="output"></span></p> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
@@ -59,6 +60,19 @@
             }
             return false;
         }
+
+        $(document).on("submit",function(e) {
+            e.preventDefault();
+            clearResults();
+
+            if (isValidPassword() && isValidEmail()) {
+                var emvalue = '<p>' + em + '</p>';
+                $('#output').append("<p>Form Output:<\p>")
+                $('#output').append(emvalue);
+                $('#output').append('Passwords Match');
+        
+            }
+        });
 
 
     </script>
